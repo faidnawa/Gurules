@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Gurules</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="key_maps" translatable="false">AIzaSyAaygNYACM05lwcjbSG6WENMLj7lPXpxbE</string>
+    <string name="img_description">Image Description</string>
+    <string name="location_gps">location_gps</string>
+    <string name="category_title">Judul Kategori</string>
+    <string name="store_title">Nama Guru</string>
+    <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Tristique senectus et netus et malesuada fames ac. Arcu non odio euismod
+        lacinia at quis. Dignissim enim sit amet venenatis urna cursus eget. Ornare lectus sit amet est placerat.
+        Consectetur libero id faucibus nisl tincidunt eget nullam. Commodo quis imperdiet massa tincidunt nunc pulvinar
+        sapien et. Sem viverra aliquet eget sit amet tellus. Amet tellus cras adipiscing enim eu turpis egestas pretium
+        aenean. Lectus nulla at volutpat diam ut venenatis tellus in metus. Sodales neque sodales ut etiam sit amet nisl
+        purus in. Enim ut tellus elementum sagittis vitae et leo.
+    </string>
+    <string name="distance">0 KM</string>
+    <string name="cari_toko">Cari Toko</string>
+    <string name="content_description">Content Description</string>
+    <string name="store_address">Alamat Toko</string>
+    <string name="description">Deskripsi</string>
+    <string name="phone_number">phone number</string>
+    <string name="telepon_penjual">telepon penjual</string>
+    <string name="search">Search</string>
+    <string name="shop_location">Shop Location</string>
+    <string name="admin_page">Admin Page</string>
+    <string name="retailer">Pengecer</string>
+    <string name="base">Jarak Guru</string>
+    <string name="distance_text">Anda 0.0 KM dari Lokasi</string>
+    <string name="shop_status">Toko saat ini masih buka</string>
+    <string name="call_shop">Telepon Penjual</string>
+    <string name="gas_status">Gas Tersedia</string>
+</resources>

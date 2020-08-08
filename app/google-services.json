@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "412172896961",
+    "firebase_url": "https://gurules-36ef4.firebaseio.com",
+    "project_id": "gurules-36ef4",
+    "storage_bucket": "gurules-36ef4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412172896961:android:566e011b9fbee9d1142240",
+        "android_client_info": {
+          "package_name": "com.skfaid.gurules"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412172896961-iamt2f124jtv0hm3nk33oeb14mdh1bka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKyGI7hvrnqArMITZhd0NlMJiivKmlr_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "412172896961-iamt2f124jtv0hm3nk33oeb14mdh1bka.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
