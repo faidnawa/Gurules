@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="key_maps" translatable="false">AIzaSyAaygNYACM05lwcjbSG6WENMLj7lPXpxbE</string>
+    <string name="key_maps" translatable="false">AIzaSyC25EAqzrVFGp77a5f1a1CrxIcbixC7l_M</string>
     <string name="img_description">Image Description</string>
     <string name="location_gps">location_gps</string>
     <string name="category_title">Judul Kategori</string>
@@ -32,4 +32,5 @@
     <string name="shop_status">Toko saat ini masih buka</string>
     <string name="call_shop">Telepon Penjual</string>
     <string name="gas_status">Gas Tersedia</string>
+    <string name="no_data">No Data</string>
 </resources>

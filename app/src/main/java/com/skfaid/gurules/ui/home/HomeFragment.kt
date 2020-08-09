@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.skfaid.gurules.R
@@ -53,9 +54,15 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         getGPSCoordinate()
+        layout_shop.setOnRefreshListener {
+            layout_shop.isRefreshing = false
+//            Log.d("debug", layout_shop.toString())
+
+        }
         mainAdapter = MainAdapter(gurulist) {}
 
         databaseReference = FirebaseDatabase.getInstance().reference
+        showLoading()
         databaseReference.child("guru")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -75,8 +82,6 @@ class HomeFragment : Fragment() {
                             latitude = response.latitude as Double
                             longitude = response.longitude as Double
                         }
-
-//            distance = deviceLocation?.distanceTo(shopLocation)?.div(1000)?.toDouble()
                         val valueLatitude =
                             shopLocation?.latitude?.let { deviceLocation?.latitude?.minus(it) }
                         val valuelongitude =
@@ -98,24 +103,18 @@ class HomeFragment : Fragment() {
                         )
                         gurulist.add(sortdata)
                         gurulist.sortBy { it.distance }
+                        hideLoading()
                         mainAdapter.notifyDataSetChanged()
                     }
                 }
             })
-
-        layout_shop.setOnRefreshListener {
-            layout_shop.isRefreshing=false
-
-        }
         deviceLocation = Location(LocationManager.GPS_PROVIDER).apply {
             latitude = deviceLatitude as Double
             longitude = deviceLongitude as Double
         }
-        Log.d("lokasi", deviceLocation.toString())
 
         rv_shop.setHasFixedSize(true)
         rv_shop.adapter = mainAdapter
-
 
     }
 
@@ -208,10 +207,37 @@ class HomeFragment : Fragment() {
             requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, 101)
         }
     }
+    fun showLoading() {
+        shimmerStart()
+        rv_shop.isGone
+    }
+     fun hideLoading() {
+        shimmerStop()
+//        rv_shop.visibility
+    }
+//
+//    fun showNoDataResult() {
+//        shimmerStop()
+////        tv_no_data_main.visible()
+//        rv_shop.gone()
+//    }
 
     @Suppress("SameParameterValue")
     private fun requestPermission(permissionType: String, requestCode: Int) {
         ActivityCompat.requestPermissions(requireActivity(), arrayOf(permissionType), requestCode)
     }
+
+    // shimmer loading animation start
+    private fun shimmerStart() {
+        shimmer_frame_main.visibility
+        shimmer_frame_main.startShimmer()
+    }
+
+    // shimmer loading animation stop
+    private fun shimmerStop() {
+        shimmer_frame_main.isGone
+        shimmer_frame_main.stopShimmer()
+    }
+
 
 }

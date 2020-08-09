@@ -34,6 +34,7 @@ class MainAdapter (
         @SuppressLint("SetTextI18n")
         fun bind(content: Sortdata, onClickListener: (Sortdata) -> Unit) {
 
+
             itemView.item_card_guru
 
             itemView.item_card_guru.setOnClickListener { onClickListener(content) }
