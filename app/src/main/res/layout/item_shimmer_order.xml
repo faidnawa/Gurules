@@ -9,7 +9,7 @@
         android:layout_width="87dp"
         android:layout_height="101dp"
         android:layout_marginRight="16dp"
-        android:background="#DDDDDD" />
+        android:background="@drawable/circular_grey_bordersolid" />
 
     <View
         android:id="@+id/name"
@@ -17,14 +17,14 @@
         android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:layout_toRightOf="@id/thumbnail"
-        android:background="#DDDDDD" />
+        android:background="@drawable/circular_grey_bordersolid" />
 
     <View
         android:layout_width="260dp"
         android:layout_height="71dp"
         android:layout_below="@id/name"
         android:layout_toRightOf="@id/thumbnail"
-        android:background="#DDDDDD" />
+        android:background="@drawable/circular_grey_bordersolid" />
 
 
 

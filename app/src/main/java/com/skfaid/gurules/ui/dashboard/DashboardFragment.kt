@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -54,6 +55,7 @@ class DashboardFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        (activity as AppCompatActivity?)?.supportActionBar?.show()
         getGPSCoordinate()
         mv_detail.onCreate(savedInstanceState)
 
@@ -69,7 +71,7 @@ class DashboardFragment : Fragment() {
                         mutableListOf(it.getValue(GuruResponse::class.java))
                     }
 
-                    contentGuru.addAll(content as List<GuruResponse>)
+                    contentGuru.addAll(content  as List<GuruResponse>)
                     contentGuru.forEach { responsemap ->
                         shopLocation = Location(LocationManager.GPS_PROVIDER).apply {
                             latitude = responsemap.latitude as Double
@@ -86,7 +88,7 @@ class DashboardFragment : Fragment() {
 
                         // set map
                         // show map
-                        mv_detail.getMapAsync { googleMap ->
+                        mv_detail?.getMapAsync { googleMap ->
                             // setup maps type
                             googleMap.mapType = GoogleMap.MAP_TYPE_NORMAL
 

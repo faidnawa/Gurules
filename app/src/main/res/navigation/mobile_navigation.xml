@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.skfaid.gurules.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,4 +26,13 @@
         android:name="com.skfaid.gurules.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.skfaid.gurules.ui.guruterdekat.GuruTerdekatFragment"
+        android:label="Guru Terdekat"
+        tools:layout="@layout/fragment_second">
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Gurules</string>
+    <string name="app_name">Guru Les</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Maps</string>
+    <string name="title_notifications">Profile</string>
     <string name="key_maps" translatable="false">AIzaSyC25EAqzrVFGp77a5f1a1CrxIcbixC7l_M</string>
     <string name="img_description">Image Description</string>
     <string name="location_gps">location_gps</string>
@@ -33,4 +33,5 @@
     <string name="call_shop">Telepon Penjual</string>
     <string name="gas_status">Gas Tersedia</string>
     <string name="no_data">No Data</string>
+    <string name="logout">logout succes</string>
 </resources>

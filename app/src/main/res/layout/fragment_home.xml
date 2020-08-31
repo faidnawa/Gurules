@@ -2,7 +2,7 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_shop"
+    android:id="@+id/layout_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -47,7 +47,7 @@
         </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_shop"
+            android:id="@+id/rv_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:isScrollContainer="true"

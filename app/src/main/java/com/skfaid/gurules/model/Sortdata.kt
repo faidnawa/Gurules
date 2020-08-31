@@ -3,7 +3,7 @@ package com.skfaid.gurules.model
 import com.google.firebase.database.Exclude
 
 class Sortdata(
-
+    var uid: String?="",
     var nama: String? = "",
     var alamat: String? = "",
     var mata_pelajaran: String? = "",

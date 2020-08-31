@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.skfaid.gurules.R
-import com.skfaid.gurules.model.GuruResponse
 import com.skfaid.gurules.model.Sortdata
+import com.skfaid.gurules.model.Sortdataa
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_guru.view.*
 import java.math.RoundingMode
@@ -17,6 +17,7 @@ import java.math.RoundingMode
 class MainAdapter (
     private val content: List<Sortdata>,
     private val onClickListener: (Sortdata) -> Unit
+
 ) :
     RecyclerView.Adapter<MainAdapter.MainViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder =
@@ -34,18 +35,12 @@ class MainAdapter (
         @SuppressLint("SetTextI18n")
         fun bind(content: Sortdata, onClickListener: (Sortdata) -> Unit) {
 
-
-            itemView.item_card_guru
-
-            itemView.item_card_guru.setOnClickListener { onClickListener(content) }
-
+            itemView.card_guru.setOnClickListener { onClickListener(content) }
             itemView.img_store.load(content.foto) {
                 crossfade(true)
                 placeholder(R.drawable.loading_animation)
                 error(R.drawable.ic_broken_image)
             }
-
-
             itemView.tv_title_shop.text = content.nama
             itemView.tv_address_shop.text = content.alamat
             itemView.tv_shop_status.text = content.mata_pelajaran

@@ -10,18 +10,22 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.*
 import com.skfaid.gurules.R
 import com.skfaid.gurules.model.GuruResponse
 import com.skfaid.gurules.model.Sortdata
+import com.skfaid.gurules.model.Sortdataa
+import com.skfaid.gurules.ui.detailguru.DetailGuruActivity
+import com.skfaid.gurules.util.Constants
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.support.v4.startActivity
 
 
 class HomeFragment : Fragment() {
@@ -40,6 +44,7 @@ class HomeFragment : Fragment() {
     private var hasNetwork = false
     private var distance: Double? = 0.0
     private var gurulist: ArrayList<Sortdata> = arrayListOf()
+    private var gurul: ArrayList<Sortdataa> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,15 +58,26 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        (activity as AppCompatActivity?)?.supportActionBar?.show()
         getGPSCoordinate()
-        layout_shop.setOnRefreshListener {
-            layout_shop.isRefreshing = false
-//            Log.d("debug", layout_shop.toString())
-
+        layout_home.setOnRefreshListener {
+            layout_home.isRefreshing = false
+            contentGuru.clear()
+            gurulist.clear()
+            gurul.clear()
+            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit()
         }
-        mainAdapter = MainAdapter(gurulist) {}
+        mainAdapter = MainAdapter(gurulist) {
+            startActivity<DetailGuruActivity>(
+                Constants.UID to it.uid
+            )
+        }
 
         databaseReference = FirebaseDatabase.getInstance().reference
+        databaseReference.keepSynced(true)
+        contentGuru.clear()
+        gurulist.clear()
+        gurul.clear()
         showLoading()
         databaseReference.child("guru")
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -73,9 +89,7 @@ class HomeFragment : Fragment() {
                     val content = dataSnapshot.children.flatMap {
                         mutableListOf(it.getValue(GuruResponse::class.java))
                     }
-
-//                    Log.d("debug", content.toString())
-
+//                    Log.d("logsatu", content.toString())
                     contentGuru.addAll(content as List<GuruResponse>)
                     contentGuru.forEach { response ->
                         shopLocation = Location(LocationManager.GPS_PROVIDER).apply {
@@ -91,6 +105,7 @@ class HomeFragment : Fragment() {
                         distance = Math.sqrt(xSquare + ySquare) * 111.319
 
                         val sortdata = Sortdata(
+                            response.uid.toString(),
                             response.nama.toString(),
                             response.alamat.toString(),
                             response.mata_pelajaran.toString(),
@@ -106,6 +121,26 @@ class HomeFragment : Fragment() {
                         hideLoading()
                         mainAdapter.notifyDataSetChanged()
                     }
+//                    gurulist.forEach {a->
+//                     if (a.distance!! < 5.5){
+//                         val sortdataa = Sortdataa(
+//                             a.uid.toString(),
+//                             a.nama.toString(),
+//                             a.alamat.toString(),
+//                             a.mata_pelajaran.toString(),
+//                             a.foto.toString(),
+//                             a.latitude as Double,
+//                             a.longitude as Double,
+//                             a.nomertp.toString(),
+//                             a.biaya,
+//                             a.distance as Double
+//                         )
+//                         gurul.add(sortdataa)
+////                         gurul.sortBy { it.distance }
+////                         hideLoading()
+////                         mainAdapter.notifyDataSetChanged()
+//                     }
+//                    }
                 }
             })
         deviceLocation = Location(LocationManager.GPS_PROVIDER).apply {
@@ -113,12 +148,10 @@ class HomeFragment : Fragment() {
             longitude = deviceLongitude as Double
         }
 
-        rv_shop.setHasFixedSize(true)
-        rv_shop.adapter = mainAdapter
+        rv_home.setHasFixedSize(true)
+        rv_home.adapter = mainAdapter
 
     }
-
-
     private fun getGPSCoordinate() {
         if (ContextCompat.checkSelfPermission(
                 requireActivity(),
@@ -209,18 +242,13 @@ class HomeFragment : Fragment() {
     }
     fun showLoading() {
         shimmerStart()
-        rv_shop.isGone
+        rv_home.isGone
     }
      fun hideLoading() {
         shimmerStop()
-//        rv_shop.visibility
+        rv_home?.visibility
     }
-//
-//    fun showNoDataResult() {
-//        shimmerStop()
-////        tv_no_data_main.visible()
-//        rv_shop.gone()
-//    }
+
 
     @Suppress("SameParameterValue")
     private fun requestPermission(permissionType: String, requestCode: Int) {
@@ -229,15 +257,34 @@ class HomeFragment : Fragment() {
 
     // shimmer loading animation start
     private fun shimmerStart() {
-        shimmer_frame_main.visibility
-        shimmer_frame_main.startShimmer()
+        shimmer_frame_main?.visibility
+        shimmer_frame_main?.startShimmer()
     }
 
     // shimmer loading animation stop
     private fun shimmerStop() {
-        shimmer_frame_main.isGone
-        shimmer_frame_main.stopShimmer()
+        shimmer_frame_main?.setVisibility(View.GONE)
+        shimmer_frame_main?.stopShimmer()
+
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_sort,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id=item.itemId
+        if (id == R.id.sortmenu){
+//            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit()
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+
+    }
+        return super.onOptionsItemSelected(item)
+    }
 
 }

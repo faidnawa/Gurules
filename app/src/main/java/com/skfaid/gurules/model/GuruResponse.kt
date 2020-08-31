@@ -5,7 +5,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class GuruResponse(
-    var id: String? = "",
+    var uid: String? = "",
     var nama: String? = "",
     var alamat: String? = "",
     var mata_pelajaran: String? = "",
@@ -18,7 +18,7 @@ data class GuruResponse(
  {
     @Exclude
     fun toMap(): Map<String, Any?> = mapOf(
-        "id" to id,
+        "id" to uid,
         "nama" to nama,
         "alamat" to alamat,
         "mata_pelajaran" to mata_pelajaran,
